@@ -30,7 +30,7 @@ public class TestUpload {
 		map.put("path", "./tomcat/vhost/test/ROOT/");//指定其他参数
 		config.url(url) //设定上传地址
 				 .encoding("GB2312") //设定编码，否则可能会引起中文乱码或导致上传失败
-				 .files(filePaths,"myfile",true)//.files(filePaths)，如果服务器端有验证input 的name值，则请传递第二个参数，如果上传失败，则尝试第三个参数设置为true
+				 .files(filePaths,new String[]{"myfile"},true)//.files(filePaths)，如果服务器端有验证input 的name值，则请传递第二个参数，如果上传失败，则尝试第三个参数设置为true
 				 .map(map);//其他需要提交的参数
 		
 		Utils.debug();//开启打印日志，调用 Utils.debug(false);关闭打印日志

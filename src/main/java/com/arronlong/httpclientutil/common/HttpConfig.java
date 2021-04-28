@@ -212,7 +212,7 @@ public class HttpConfig {
 	 * @return	返回当前对象
 	 */
 	public HttpConfig files(String[] filePaths) {
-		return files(filePaths, "file");
+		return files(filePaths, new String[]{"file"});
 	}
 	/**
 	 * 上传文件时用到
@@ -220,9 +220,10 @@ public class HttpConfig {
 	 * @param inputName	即file input 标签的name值，默认为file
 	 * @return	返回当前对象
 	 */
-	public HttpConfig files(String[] filePaths, String inputName) {
+	public HttpConfig files(String[] filePaths, String[] inputName) {
 		return files(filePaths, inputName, false);
 	}
+	
 	/**
 	 * 上传文件时用到
 	 * @param filePaths		待上传文件所在路径
@@ -230,16 +231,7 @@ public class HttpConfig {
 	 * @param forceRemoveContentTypeChraset	是否强制一处content-type中设置的编码类型
 	 * @return	返回当前对象
 	 */
-	public HttpConfig files(String[] filePaths, String inputName, boolean forceRemoveContentTypeChraset) {
-//		synchronized (getClass()) {
-//			if(this.map==null){
-//				this.map= new HashMap<String, Object>();
-//			}
-//		}
-//		map.put(Utils.ENTITY_MULTIPART, filePaths);
-//		map.put(Utils.ENTITY_MULTIPART+".name", inputName);
-//		map.put(Utils.ENTITY_MULTIPART+".rmCharset", forceRemoveContentTypeChraset);
-
+	public HttpConfig files(String[] filePaths, String inputName[], boolean forceRemoveContentTypeChraset) {
 		Map<String, Object> m = maps.get();
 		if(m==null || m==null){
 			m = new HashMap<String, Object>();

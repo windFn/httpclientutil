@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Stream;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
@@ -132,11 +133,9 @@ public class Utils {
 						builder.setCharset(Charset.forName(encoding));// 设置请求的编码格式
 						builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);// 设置浏览器兼容模式
 						int count = 0;
-						for (File file : files) {
-//							//把文件转换成流对象FileBody
-//							FileBody fileBody = new FileBody(file);
-//							builder.addPart(String.valueOf(map.get(ENTITY_MULTIPART+".name")) + count++, fileBody);
-							builder.addBinaryBody(String.valueOf(map.get(ENTITY_MULTIPART+".name")) + count++,file);
+						String[] names = (String[]) map.get(ENTITY_MULTIPART+".name");
+						for(int i=0;i<files.length;i++) {
+							builder.addBinaryBody(names.length>i?names[i]:"file"+i,files[i]);
 						}
 						boolean forceRemoveContentTypeCharset = (Boolean)map.get(ENTITY_MULTIPART+".rmCharset");
 						Map<String, Object> m = new HashMap<String, Object>();

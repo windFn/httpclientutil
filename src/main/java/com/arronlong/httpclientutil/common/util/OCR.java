@@ -77,7 +77,7 @@ public class OCR {
   		
   		String html;
 		try {
-			html = HttpClientUtil.upload(HttpConfig.custom().client(client).url(apiUrl).files(new String[]{imgFilePath},"ocrfile",true).map(getParaMap()));
+			html = HttpClientUtil.upload(HttpConfig.custom().client(client).url(apiUrl).files(new String[]{imgFilePath},new String[]{"ocrfile"},true).map(getParaMap()));
 			//System.out.println(html);
 			String[] results = StringUtil.regex("<Result>([^<]*)</Result>\\s*<Status>([^<]*)</Status>", html);
 			if(results.length>0){
